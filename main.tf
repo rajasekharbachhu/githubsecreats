@@ -1,25 +1,22 @@
-# Define the provider
-provider "aws" {
-  region = "us-east-1"  # Specify your desired region
+# Define a variable for the first number
+variable "number1" {
+  description = "The first number to add"
+  type        = number
 }
 
-# Define the VPC
-resource "aws_vpc" "main" {
-  cidr_block           = "10.0.0.0/16"  # Define the CIDR block for the VPC
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-  tags = {
-    Name = "my-vpc"
-  }
+# Define a variable for the second number
+variable "number2" {
+  description = "The second number to add"
+  type        = number
 }
 
-# Define a public subnet
-resource "aws_subnet" "public" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = "10.0.1.0/24"  # Define the CIDR block for the subnet
-  availability_zone       = "us-east-1a"  # Specify your desired availability zone
-  map_public_ip_on_launch = true
-  tags = {
-    Name = "my-public-subnet"
-  }
+# Calculate the sum of the two numbers
+locals {
+  sum = var.number1 + var.number2
+}
+
+# Output the result
+output "sum_result" {
+  description = "The sum of the two numbers"
+  value       = local.sum
 }
