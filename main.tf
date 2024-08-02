@@ -12,8 +12,8 @@ variable "number2" {
 
 # Calculate the sum of the two numbers
 locals {
-  #sum = var.number1 + var.number2
-  sum = $(TF_VAR_number1) + $(TF_VAR_number2)
+  sum = var.number1 + var.number2
+ 
  
 }
 
