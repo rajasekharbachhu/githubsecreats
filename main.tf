@@ -1,4 +1,4 @@
-/*# Define a variable for the first number
+# Define a variable for the first number
 variable "number1" {
   description = "The first number to add"
   type        = number
@@ -8,11 +8,13 @@ variable "number1" {
 variable "number2" {
   description = "The second number to add"
   type        = number
-}*/
+}
 
 # Calculate the sum of the two numbers
 locals {
-  sum = var.number1 + var.number2
+  #sum = var.number1 + var.number2
+  sum = $(TF_VAR_number1) + $(TF_VAR_number2)
+ 
 }
 
 # Output the result
